@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Raleway|Ubuntu"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./css/styles.css" />
+    <link rel="shortcut icon" href="./img/logouwu.png" type="image/x-icon" />
+    <title>Consumo de API's</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+      crossorigin="anonymous"
+    />
+  </head>
+
+  <body>
+    <div id="app">
+        <div class="login-page">
+          <div class="cont-login">
+            <div class="form">
+              <form method="post" id="filter" class="login-form">
+                <input
+                  type="text"
+                  id="usuario"
+                  name="usuario"
+                  placeholder="Usuario"
+                  v-model="userEntered"
+                />
+                <input
+                  type="password"
+                  id="contraseña"
+                  name="contraseña"
+                  placeholder="Contraseña"
+                  v-model="passwordEntered"
+                />
+                <p v-if="error">Usuario y/o contraseña incorrectos.</p>
+                <button type="submit" @click.prevent="verifyUser">
+                  Iniciar Sesión
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <!-- CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="./main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css"
+    />
+    <link rel="stylesheet" href="../css/table.css">
+    <title>Tabla - Filtros</title>
+  </head>
+  <body>
+    <div id="table">
+    
+      <div class="abs-center">
+        <div class="card">
+          <div class="d-flex flex-row-reverse bd-highlight">
+            <button type="button" class="btn btn-danger d-flex border border-1" style="width: 75px; margin-bottom: -10px;" @click="logout">Logout</button>
+          </div>
+          <p v-if="error" style="color: red; margin-left: 50px;">La cantidad supera el número de usuarios registrados.</p>
+          <div class="row d-flex justify-content-center" id="play">
+            <div class="col-md-10">
+              <div class="mb-3">
+                <form>
+                  <div class="row form-group">
+                    <div class="col-6 d-flex row">
+                      <label for="quantity" class="form-label">Cantidad de datos a mostrar:</label>
+                      <div class="d-flex">
+                        <input type="number" id="quantity" name="quantity" placeholder="Ingrese la cantidad de datos" class="form-control" aria-label="First name" v-model="quantityEntered" />
+                        <button type="button" class="btn btn-primary" @click.prevent="quanFilter">
+                          <i class="bi bi-funnel-fill"></i>
+                        </button>
+                      </div>
+                    </div>
+                    <div class="col d-flex row">
+                      <label for="gender">Seleccione un género:</label>
+                      <div class="d-flex">
+                        <select id= "gender" class="form-select" aria-label="Default select example" v-model="selectedGender" @change="genderFilter">
+                        <option value="male">Hombre</option>
+                        <option value="female">Mujer</option>
+                        <option value="all">Todos</option>
+                      </select>
+                      </div>
+                  </div>
+                  </div>
+              </form>
+              <br>
+                <table class="table table-striped table-bordered table-hover table-sm">
+                  <thead class="thead-dark">
+                    <tr class="text-center">
+                      <th scope="col">Foto</th>
+                      <th scope="col">Nombre</th>
+                      <th scope="col">Edad</th>
+                      <th scope="col">País</th>
+                      <th scope="col">Email</th>
+                      <th scope="col">Teléfono</th>
+                      <th scope="col">Celular</th>
+                      <th scope="col">Eliminar</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="text-center" v-for="(u, index) in arrayUsers" :key="index" >
+                      <td><img :src="u.pic"></td>
+                      <th scope="row">{{u.name.first}} {{u.name.last}}</th>
+                      <td>{{u.age}}</td>
+                      <td>{{u.country}}</td>
+                      <td>{{u.email}}</td>
+                      <td>{{u.phone}}</td>
+                      <td>{{u.cell}}</td>
+                      <td class="text-center"><button type="button" class="btn btn-danger" @click="deleteRow(index)" ><i class="bi bi-trash3"></i></button></td>
+                    </tr>
+                  </tbody>
+                </table>
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                  <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                  <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                </svg><p>Bienvenido/a, {{user[0].name.first}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="./table.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  </body>
+</html>
